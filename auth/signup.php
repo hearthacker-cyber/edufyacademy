@@ -142,8 +142,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signup'])) {
         </div>
         
         <div class="form-group">
-            <label for="contact">Phone Number</label>
-            <input type="tel" id="contact" name="contact" class="form-control" value="<?php echo htmlspecialchars($contact); ?>">
+            <label for="contact">Phone Number *</label>
+            <input type="tel" id="contact" name="contact" class="form-control" value="<?php echo htmlspecialchars($contact); ?>" required>
         </div>
         
         <div class="form-group">
