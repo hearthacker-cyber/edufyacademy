@@ -1,0 +1,30 @@
+[19-Sep-2025 11:08:10 UTC] Mailer Error: SMTP Error: Could not authenticate.
+[12-Oct-2025 12:29:44 UTC] Mailer Error: SMTP Error: Could not authenticate.
+[15-Oct-2025 10:21:24 UTC] Mailer Error: SMTP Error: Could not authenticate.
+[27-Dec-2025 15:09:02 UTC] Mailer Error: SMTP Error: Could not authenticate.
+[28-Dec-2025 07:58:39 UTC] PHP Fatal error:  Uncaught LogicException: id_token must be passed in or set as part of setAccessToken in /home/u894882493/domains/edufyacademy.com/public_html/vendor/google/apiclient/src/Client.php:851
+Stack trace:
+#0 /home/u894882493/domains/edufyacademy.com/public_html/app/auth/google-callback.php(43): Google\Client->verifyIdToken()
+#1 {main}
+  thrown in /home/u894882493/domains/edufyacademy.com/public_html/vendor/google/apiclient/src/Client.php on line 851
+[28-Dec-2025 18:14:07 UTC] PHP Fatal error:  Uncaught LogicException: id_token must be passed in or set as part of setAccessToken in /home/u894882493/domains/edufyacademy.com/public_html/vendor/google/apiclient/src/Client.php:851
+Stack trace:
+#0 /home/u894882493/domains/edufyacademy.com/public_html/app/auth/google-callback.php(43): Google\Client->verifyIdToken()
+#1 {main}
+  thrown in /home/u894882493/domains/edufyacademy.com/public_html/vendor/google/apiclient/src/Client.php on line 851
+[28-Dec-2025 18:18:30 UTC] PHP Fatal error:  Uncaught LogicException: id_token must be passed in or set as part of setAccessToken in /home/u894882493/domains/edufyacademy.com/public_html/vendor/google/apiclient/src/Client.php:851
+Stack trace:
+#0 /home/u894882493/domains/edufyacademy.com/public_html/app/auth/google-callback.php(43): Google\Client->verifyIdToken()
+#1 {main}
+  thrown in /home/u894882493/domains/edufyacademy.com/public_html/vendor/google/apiclient/src/Client.php on line 851
+[02-Jan-2026 07:32:33 UTC] Mailer Error: SMTP Error: Could not authenticate.
+[04-Jan-2026 12:25:30 UTC] Mailer Error: SMTP Error: Could not authenticate.
+[05-Jan-2026 03:21:12 UTC] Mailer Error: SMTP Error: Could not authenticate.
+[05-Jan-2026 03:33:36 UTC] Mailer Error: SMTP Error: Could not authenticate.
+[05-Jan-2026 07:20:29 UTC] Mailer Error: SMTP Error: Could not authenticate.
+[05-Jan-2026 07:47:25 UTC] Mailer Error: SMTP Error: Could not authenticate.
+[05-Jan-2026 09:06:06 UTC] PHP Fatal error:  Uncaught LogicException: id_token must be passed in or set as part of setAccessToken in /home/u894882493/domains/edufyacademy.com/public_html/vendor/google/apiclient/src/Client.php:851
+Stack trace:
+#0 /home/u894882493/domains/edufyacademy.com/public_html/app/auth/google-callback.php(43): Google\Client->verifyIdToken()
+#1 {main}
+  thrown in /home/u894882493/domains/edufyacademy.com/public_html/vendor/google/apiclient/src/Client.php on line 851
