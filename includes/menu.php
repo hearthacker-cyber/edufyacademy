@@ -16,6 +16,7 @@
         <a class="nav-link" href="courses.php"><i class="fa fa-graduation-cap me-2"></i>Courses</a>
         <a class="nav-link" href="my-courses.php"><i class="fa fa-book me-2"></i>My Course</a>
         <a class="nav-link" href="profile.php"><i class="fa fa-user me-2"></i>Profile</a>
+        <a class="nav-link" href="terms.php"><i class="fa fa-file-text me-2"></i>Terms & Conditions</a>
         
         <a class="nav-link" href="auth/logout.php"><i class="fa fa-sign-out me-2"></i>Logout</a>
       </nav>

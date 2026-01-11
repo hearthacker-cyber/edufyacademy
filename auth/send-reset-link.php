@@ -39,7 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $serverKey = 'EdufySecretKey2024!'; 
         $signature = hash_hmac('sha256', $payload, $serverKey . $user['password']);
         
-        $resetLink = "http://" . $_SERVER['HTTP_HOST'] . "/app/auth/reset-password.php?data=$payload&sig=$signature";
+        $path = dirname($_SERVER['PHP_SELF']); // e.g. /app/auth
+        $resetLink = "http://" . $_SERVER['HTTP_HOST'] . $path . "/reset-password.php?data=$payload&sig=$signature";
         
         // Send Email
         $to = $email;
