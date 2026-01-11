@@ -15,6 +15,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         if ($action === 'complete') {
+            // Validate that lesson belongs to course
+            $checkLesson = $pdo->prepare("SELECT id FROM course_lessons WHERE id = ? AND course_id = ?");
+            $checkLesson->execute([$lessonId, $courseId]);
+            if (!$checkLesson->fetch()) {
+                echo json_encode(['success' => false, 'message' => 'Invalid lesson for this course']);
+                exit;
+            }
+
             // Check if already marked
             $stmt = $pdo->prepare("SELECT id FROM user_progress WHERE user_id = ? AND lesson_id = ?");
             $stmt->execute([$userId, $lessonId]);

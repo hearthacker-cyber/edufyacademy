@@ -812,6 +812,15 @@ unset($_SESSION['toast_type']);
                 <div class="progress-bar">
                     <div class="progress-bar-fill" style="width: <?php echo $progress; ?>%"></div>
                 </div>
+                <?php if ($progress >= 100): ?>
+                    <div class="mt-3 text-center">
+                        <a href="certificate.php?id=<?php echo $enrollment['id'] ?? 0; // Use enrollment_id if available, but certificate.php uses course_id logic too?>" 
+                           onclick="window.location.href='certificate.php?id=<?php echo $course_id; ?>'; return false;"
+                           class="btn btn-sm btn-outline-light text-white border-white">
+                            <i class="fas fa-certificate me-1"></i> Download Certificate
+                        </a>
+                    </div>
+                <?php endif; ?>
             </div>
         <?php endif; ?>
 
@@ -1110,6 +1119,13 @@ unset($_SESSION['toast_type']);
                             $(`.lesson-item[data-lesson-id="${lesson.id}"] .lesson-icon`).html('<i class="fas fa-check"></i>');
                             const progress = response.progress || 0;
                             $('.progress-bar-fill').css('width', progress + '%');
+                            $('.badge.text-success').text(progress + '%');
+                             
+                            if (progress >= 100) {
+                                // Reload to show certificate button or show specific message
+                                // Ideally, we could just append the button, but reload is safer for now to ensure server state consistency
+                                location.reload();
+                            }
                         }
                     });
                 }
