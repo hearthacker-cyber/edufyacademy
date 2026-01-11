@@ -18198,3 +18198,4 @@ Stack trace:
 [05-Jan-2026 13:50:32 UTC] PHP Deprecated:  substr(): Passing null to parameter #1 ($string) of type string is deprecated in /home/u894882493/domains/edufyacademy.com/public_html/app/coures.php on line 63
 [05-Jan-2026 13:50:32 UTC] PHP Warning:  Undefined array key "short_description" in /home/u894882493/domains/edufyacademy.com/public_html/app/coures.php on line 63
 [05-Jan-2026 13:50:32 UTC] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home/u894882493/domains/edufyacademy.com/public_html/app/coures.php on line 63
+[11-Jan-2026 16:03:40 Europe/Berlin] Database connection failed: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it

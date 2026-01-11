@@ -86,6 +86,13 @@ try {
                              aria-valuemax="100">
                         </div>
                     </div>
+                    <?php if ($progress >= 100): ?>
+                        <div class="mt-2 text-center">
+                            <a href="certificate.php?id=<?= $enrollment['id'] ?>" class="text-success small" target="_blank" onclick="event.stopPropagation();">
+                                <i class="fa fa-certificate"></i> Get Certificate
+                            </a>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </a>
         <?php endforeach; ?>

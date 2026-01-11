@@ -42,6 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signup'])) {
     
     if (empty($first_name) || empty($email) || empty($password) || empty($confirm_password)) {
         $error = 'Please fill in all required fields';
+    } elseif (!isset($_POST['terms'])) {
+        $error = 'You must agree to the Terms and Conditions to sign up';
     } elseif ($password !== $confirm_password) {
         $error = 'Passwords do not match';
     } elseif (strlen($password) < 8) {
@@ -64,6 +66,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signup'])) {
                 
                 if ($insertStmt->execute([$first_name, $last_name, $email, $contact, $hashed_password])) {
                     $success = 'Registration successful! You can now login.';
+                    
+                    // Send Welcome Email
+                    $to = $email;
+                    $subject = "Welcome to Edufy Academy";
+                    $message = "Hello $first_name,\n\nWelcome to Edufy Academy! We are excited to have you on board.\n\nYour login email is: $email\n\nIf you have any questions, contact us at support@edufyacademy.com.\n\nBest Regards,\nEdufy Academy Team";
+                    $headers = "From: no-reply@edufyacademy.com";
+                    
+                    mail($to, $subject, $message, $headers);
+
                     // Clear form
                     $first_name = $last_name = $email = $contact = '';
                 } else {
@@ -154,6 +165,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signup'])) {
         <div class="form-group">
             <label for="confirm_password">Confirm Password *</label>
             <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+        </div>
+
+        <div class="form-group" style="display: flex; align-items: flex-start; gap: 8px;">
+            <input type="checkbox" id="terms" name="terms" required style="width: auto; margin-top: 4px;">
+            <label for="terms" style="display: initial;">I agree to the <a href="../terms.php" target="_blank">Terms and Conditions</a> *</label>
         </div>
         
         <button type="submit" name="signup" class="btn">Sign Up</button>

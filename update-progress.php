@@ -29,15 +29,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Calculate new progress
-        $stmt = $pdo->prepare("
-            SELECT 
-                (SELECT COUNT(*) FROM user_progress WHERE user_id = ? AND course_id = ?) AS completed,
-                (SELECT COUNT(*) FROM course_lessons WHERE course_id = ?) AS total
-        ");
-        $stmt->execute([$userId, $courseId, $courseId]);
-        $progress = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM course_lessons WHERE course_id = ?");
+        $stmt->execute([$courseId]);
+        $totalLessons = $stmt->fetchColumn();
 
-        $percentage = $progress['total'] > 0 ? round(($progress['completed'] / $progress['total']) * 100) : 0;
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM user_progress WHERE user_id = ? AND course_id = ?");
+        $stmt->execute([$userId, $courseId]);
+        $completedLessons = $stmt->fetchColumn();
+
+        $percentage = $totalLessons > 0 ? round(($completedLessons / $totalLessons) * 100) : 0;
+        
+        // Ensure it doesn't exceed 100
+        if ($percentage > 100) $percentage = 100;
 
         echo json_encode(['success' => true, 'progress' => $percentage]);
         
