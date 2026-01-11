@@ -36,12 +36,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$userId, $lessonId]);
         }
 
-        // Calculate new progress
+        // Calculate new progress robustly
         $stmt = $pdo->prepare("SELECT COUNT(*) FROM course_lessons WHERE course_id = ?");
         $stmt->execute([$courseId]);
         $totalLessons = $stmt->fetchColumn();
 
-        $stmt = $pdo->prepare("SELECT COUNT(*) FROM user_progress WHERE user_id = ? AND course_id = ?");
+        $stmt = $pdo->prepare("
+            SELECT COUNT(DISTINCT up.lesson_id) 
+            FROM user_progress up 
+            INNER JOIN course_lessons cl ON up.lesson_id = cl.id 
+            WHERE up.user_id = ? AND up.course_id = ?
+        ");
         $stmt->execute([$userId, $courseId]);
         $completedLessons = $stmt->fetchColumn();
 

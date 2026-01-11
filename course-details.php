@@ -796,11 +796,20 @@ unset($_SESSION['toast_type']);
         <?php if ($isEnrolled): ?>
             <?php
             $progress = 0;
+            $completed = 0;
             if ($totalLessons > 0) {
-                $stmt = $pdo->prepare("SELECT COUNT(*) FROM user_progress WHERE user_id = ? AND course_id = ?");
+                // Robust calculation: Count unique lessons that exist in the curriculum
+                $stmt = $pdo->prepare("
+                    SELECT COUNT(DISTINCT up.lesson_id) 
+                    FROM user_progress up 
+                    INNER JOIN course_lessons cl ON up.lesson_id = cl.id 
+                    WHERE up.user_id = ? AND up.course_id = ?
+                ");
                 $stmt->execute([$_SESSION['user_id'], $course_id]);
                 $completed = $stmt->fetchColumn();
+                
                 $progress = round(($completed / $totalLessons) * 100);
+                if ($progress > 100) $progress = 100;
             }
             ?>
             <div class="progress-card">
